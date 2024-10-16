@@ -19,7 +19,8 @@ function NumbersColumn(props: { value: number | string }) {
     const el = elNumbers.current.querySelector(`.num_${props.value}`);
     if (!el) return;
     container.current?.scrollTo({
-      top: el.getBoundingClientRect().top - elNumbers.current.getBoundingClientRect().top,
+      top: el.getBoundingClientRect().top -
+        elNumbers.current.getBoundingClientRect().top,
       behavior: "smooth",
     });
   }, [props.value]);
@@ -39,8 +40,6 @@ function TimeCell(props: { value: string }) {
 
   return (
     <div class="flex tracking-wide">
-      {/* <p>{value[0]}</p> */}
-      {/* <p>{value[1]}</p> */}
       <NumbersColumn value={value[0]}></NumbersColumn>
       <NumbersColumn value={value[1]}></NumbersColumn>
     </div>
@@ -81,12 +80,6 @@ export default function Timer(props: Props) {
       class={"flex items-center justify-center gap-x-2 py-6 select-none " +
         (props.class ?? "")}
     >
-      {
-        /* <NumbersColumn
-        value={delta.value.seconds.toString().padStart(2, "0")[1]}
-      /> */
-      }
-
       <TimeCell value={delta.value.days.toString()} />
       <p>:</p>
       <TimeCell value={delta.value.hours.toString()} />
