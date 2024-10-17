@@ -10,6 +10,7 @@ export default function Home() {
     <div class="mx-auto h-screen bg-[url('/bg.jpg')] bg-cover">
       <div class="backdrop-blur-3xl h-full w-full p-8">
         <div class="max-w-screen-md mx-auto h-full flex flex-col items-center justify-center bg-none">
+          <img src="/sga_mc_cropped.png"></img>
           <Timer
             from={new Date().getTime()}
             to={to.getTime()}
