@@ -42,7 +42,7 @@ function NumbersColumn(props: { value: number | string }) {
       class="relative h-fit overflow-hidden"
       ref={container}
     >
-      <p class="invisible">{props.value}</p>
+      <p class="invisible w-[45.4px]">{props.value}</p>
       <div class="absolute top-0" ref={elNumbers}>
         {numbers.map((number) => <p class={`num_${number}`}>{number}</p>)}
       </div>
@@ -92,7 +92,7 @@ export default function Timer(props: Props) {
 
   return (
     <div
-      class={"flex items-center justify-center gap-x-2 p-3 select-none  " +
+      class={"flex items-center justify-center gap-x-2 p-3 select-none drop-shadow-[5px_3px_5px_#d5ab55] text-orange-300 " +
         (props.class ?? "")}
     >
       <TimeCell value={delta.value.days.toString()} />
