@@ -1,5 +1,5 @@
 import { useComputed, useSignal } from "@preact/signals";
-import { useEffect, useRef } from "preact/hooks";
+import { useCallback, useEffect, useRef } from "preact/hooks";
 import { difference } from "$std/datetime/mod.ts";
 
 interface Props {
@@ -14,7 +14,7 @@ function NumbersColumn(props: { value: number | string }) {
   const elNumbers = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const scrollTo = useCallback(() => {
     if (!elNumbers.current || !container.current) return;
     const el = elNumbers.current.querySelector(`.num_${props.value}`);
     if (!el) return;
@@ -25,8 +25,23 @@ function NumbersColumn(props: { value: number | string }) {
     });
   }, [props.value]);
 
+  useEffect(() => {
+    scrollTo();
+  }, [props.value]);
+
+  useEffect(() => {
+    globalThis.addEventListener("resize", scrollTo);
+
+    return () => {
+      globalThis.removeEventListener("resize", scrollTo);
+    };
+  });
+
   return (
-    <div class="relative h-fit overflow-hidden" ref={container}>
+    <div
+      class="relative h-fit overflow-hidden"
+      ref={container}
+    >
       <p class="invisible">{props.value}</p>
       <div class="absolute top-0" ref={elNumbers}>
         {numbers.map((number) => <p class={`num_${number}`}>{number}</p>)}
@@ -77,7 +92,7 @@ export default function Timer(props: Props) {
 
   return (
     <div
-      class={"flex items-center justify-center gap-x-2 py-6 select-none " +
+      class={"flex items-center justify-center gap-x-2 p-3 select-none  " +
         (props.class ?? "")}
     >
       <TimeCell value={delta.value.days.toString()} />

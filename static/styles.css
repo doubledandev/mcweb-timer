@@ -4,12 +4,22 @@
 
 @font-face {
   font-family: "Minecraft";
-  src: url('./MinecraftTen-VGORe.ttf');
+  src: url("./MinecraftTen-VGORe.ttf");
 }
 
 body {
-  font-family: "Minecraft", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    "Minecraft",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
 
   overflow: hidden;
   margin: 0;
