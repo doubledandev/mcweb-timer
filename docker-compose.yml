@@ -1,0 +1,28 @@
+networks:
+  dev:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+    depends_on:
+      - mcweb
+    networks:
+      - dev
+  
+  mcweb:
+    build:
+      context: ./front
+      dockerfile: ./dockerfile
+    networks:
+      - dev
+
+  gnida:
+    build:
+      context: ./gnida
+      dockerfile: ./dockerfile
+    networks:
+      - dev

@@ -1,0 +1,19 @@
+# Set the base image
+FROM denoland/deno:2.0.2
+
+WORKDIR /app
+
+# Copying all the files
+COPY . .
+RUN deno install
+RUN deno task build
+EXPOSE 8000
+CMD [ "deno", "task", "preview" ]
+#COPY ./nginx_front.conf ./nginx_front.conf 
+
+#FROM nginx:stable-alpine
+#COPY --from=build /dist /usr/share/nginx/html
+#COPY --from=build ./nginx_front.conf /etc/nginx/conf.d/default.conf
+#EXPOSE 8000
+
+#CMD [ "nginx", "-g", "daemon off;" ]
